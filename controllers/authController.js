@@ -284,18 +284,37 @@ exports.gotoReset = (req, res) => {
             }
             else {
                 const { _id } = decodedToken;
-                User.findById(_id, (err, user) => {
-                    if (err) {
-                        req.flash(
-                            'error_msg',
-                            'User with email ID does not exist! Please try again.'
-                        );
+                // User.findById(_id, (err, user) => {
+                //     if (err) {
+                //         req.flash(
+                //             'error_msg',
+                //             'User with email ID does not exist! Please try again.'
+                //         );
+                //         res.redirect('/auth/login');
+                //     }
+                //     else {
+                //         res.redirect(`/auth/reset/${_id}`)
+                //     }
+                // })
+                User.findById(_id)
+                    .exec()
+                    .then(user => {
+                        if (!user) {
+                            req.flash(
+                                'error_msg',
+                                'User with email ID does not exist! Please try again.'
+                            );
+                            res.redirect('/auth/login');
+                        } else {
+                            res.redirect(`/auth/reset/${_id}`);
+                        }
+                    })
+                    .catch(err => {
+                        // Handle any potential errors here
+                        console.error(err);
+                        // Handle the error and redirect or respond accordingly
                         res.redirect('/auth/login');
-                    }
-                    else {
-                        res.redirect(`/auth/reset/${_id}`)
-                    }
-                })
+                    });
             }
         })
     }
@@ -338,33 +357,23 @@ exports.resetPassword = (req, res) => {
     }
 
     else {
-        bcryptjs.genSalt(10, (err, salt) => {
-            bcryptjs.hash(password, salt, (err, hash) => {
-                if (err) throw err;
+        bcryptjs.genSalt(10)
+            .then(salt => bcryptjs.hash(password, salt))
+            .then(hash => {
                 password = hash;
-
-                User.findByIdAndUpdate(
+                return User.findByIdAndUpdate(
                     { _id: id },
-                    { password },
-                    function (err, result) {
-                        if (err) {
-                            req.flash(
-                                'error_msg',
-                                'Error resetting password!'
-                            );
-                            res.redirect(`/auth/reset/${id}`);
-                        } else {
-                            req.flash(
-                                'success_msg',
-                                'Password reset successfully!'
-                            );
-                            res.redirect('/auth/login');
-                        }
-                    }
-                );
-
+                    { password }
+                ).exec();
+            })
+            .then(result => {
+                req.flash('success_msg', 'Password reset successfully!');
+                res.redirect('/auth/login');
+            })
+            .catch(err => {
+                req.flash('error_msg', 'Error resetting password!');
+                res.redirect(`/auth/reset/${id}`);
             });
-        });
     }
 }
 
@@ -379,9 +388,9 @@ exports.loginHandle = (req, res, next) => {
 
 //------------ Logout Handle ------------//
 exports.logoutHandle = (req, res) => {
-    req.logout(() =>{
+    req.logout(() => {
         req.flash('success_msg', 'You are logged out');
         res.redirect('/auth/login');
     });
-    
+
 }
