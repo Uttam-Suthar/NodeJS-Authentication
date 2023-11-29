@@ -16,13 +16,24 @@ This is a Nodejs Authentication  Project which is built using Nodejs, Ejs ,CSS, 
 
 ## Screenshots
 ### Home Page
-![image](https://i.postimg.cc/pLFCg5n4/home.png)
+![home page](https://github.com/Uttam-Suthar/NodeJS-Authentication/assets/140789157/2a0008a9-19b0-4431-9f14-1c6cbf176621)
+
 ### Sign-up Page
-![image](https://i.postimg.cc/SNwjtn4n/signup.png)
+![sign up](https://github.com/Uttam-Suthar/NodeJS-Authentication/assets/140789157/ec70cb24-8356-4ef4-8e1b-926834b238ba)
+
+
 ### Sign-in Page
-![image](https://i.postimg.cc/RFKzhZ8D/signin.png)
+![Sign in](https://github.com/Uttam-Suthar/NodeJS-Authentication/assets/140789157/106dcaa4-35ea-47d5-913f-12172f48ce8d)
+
+
+### Forgot Password
+![Forgot pass](https://github.com/Uttam-Suthar/NodeJS-Authentication/assets/140789157/f9578b70-1d59-465f-963e-e6862cd02d3b)
+
+
 ### Reset Password
-![image](https://i.postimg.cc/vH4cvNkz/resetpassword.png)
+![reset pass](https://github.com/Uttam-Suthar/NodeJS-Authentication/assets/140789157/aa82f163-50a6-48cb-87dd-34523a0ccd06)
+
+
 .
 ## Available Scripts
 In the project directory, you can run:
