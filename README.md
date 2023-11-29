@@ -10,6 +10,7 @@ This is a Nodejs Authentication  Project which is built using Nodejs, Ejs ,CSS, 
 -User signup  on this page ..Name,Email_ID, and Password . <br/>
 -User sign in on this page...Name and Password.      <br/>
 --User Home page display when user active link by main 
+-User can reset or change password.Enter your name ,Enter new password. The Password store in mongoDB has encrypted  <br/>
 <br/>
 <br/>
 
@@ -28,7 +29,7 @@ In the project directory, you can run:
 
 ### `npm start`
 Runs the app in the development mode.\
-Link [Deployment link](http://localhost:7500) to view it in your browser.
+Link [Deployment link](https://nodejs-authentication-aakw.onrender.com) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
